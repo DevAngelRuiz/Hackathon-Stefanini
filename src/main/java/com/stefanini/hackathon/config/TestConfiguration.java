@@ -13,39 +13,22 @@ import java.util.ArrayList;
 @Profile("test")
 public class TestConfiguration {
 
-    @Bean
-    CommandLineRunner commandLineRunner(AlunoRepository alunoRepository,
-                                        CursoRepository cursoRepository,
-                                        DadosPessoaisRepository dadosPessoaisRepository,
-                                        DisciplinaRepository disciplinaRepository,
-                                        TurmaRepository turmaRepository) {
-        return args -> {
-            Turma turma = new Turma();
-            turmaRepository.save(turma);
-            DadosPessoais dadosPessoais = new DadosPessoais(null,
-                    "156-456-41",
-                    "joao@gmail.com");
-            Aluno joao = new Aluno(null,
-                    "Joao",
-                    "1234567",
-                   dadosPessoais,
-                    turma
-            );
-            alunoRepository.save(joao);
-            Curso curso = new Curso(null, "medicina",
-                    new ArrayList<Disciplina>(),
-                    370);
-            cursoRepository.save(curso);
-            Disciplina disciplina = new Disciplina(null,
-                    "Disciplina1",
-                    "A045cod",
-                    "xxxxxxxxxxxxxxxxxxxxxx",
-                    15,
-                    80,
-                    turma,
-                    curso);
-            disciplinaRepository.save(disciplina);
-        };
-    }
+	@Bean
+	CommandLineRunner commandLineRunner(AlunoRepository alunoRepository, CursoRepository cursoRepository,
+			DadosPessoaisRepository dadosPessoaisRepository, DisciplinaRepository disciplinaRepository,
+			TurmaRepository turmaRepository) {
+		return args -> {
+			Turma turma = new Turma();
+			turmaRepository.save(turma);
+			DadosPessoais dadosPessoais = new DadosPessoais(null, "156-456-41", "joao@gmail.com");
+			Aluno joao = new Aluno(null, "Joao", "1234567", dadosPessoais, turma);
+			alunoRepository.save(joao);
+			Curso curso = new Curso(null, "medicina", new ArrayList<Disciplina>(), 370);
+			cursoRepository.save(curso);
+			Disciplina disciplina = new Disciplina(null, "Disciplina1", "A045cod", "xxxxxxxxxxxxxxxxxxxxxx", 15, 80,
+					turma, curso);
+			disciplinaRepository.save(disciplina);
+		};
+	}
 
 }
